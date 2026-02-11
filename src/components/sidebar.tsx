@@ -12,10 +12,12 @@ import {
   TrendingUp,
   Moon,
   Sun,
+  LogOut,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Switch } from "@/components/ui/switch";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const NAV_ITEMS = [
   { id: "overview", label: "Performance Overview", icon: LineChart },
@@ -30,8 +32,15 @@ export function Sidebar() {
   const { activeSection, setActiveSection } = useFilterStore();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => setMounted(true), []);
+
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    router.push("/login");
+    router.refresh();
+  };
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);
@@ -84,8 +93,8 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* Theme Toggle */}
-      <div className="border-t border-border/50 px-6 py-4">
+      {/* Bottom Section */}
+      <div className="border-t border-border/50 px-6 py-4 space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             {mounted && theme === "dark" ? (
@@ -104,7 +113,14 @@ export function Sidebar() {
             />
           )}
         </div>
-        <p className="mt-3 text-[10px] text-muted-foreground/60">
+        <button
+          onClick={handleLogout}
+          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-muted-foreground transition-colors hover:bg-red-500/10 hover:text-red-400"
+        >
+          <LogOut className="h-3.5 w-3.5" />
+          Sign Out
+        </button>
+        <p className="text-[10px] text-muted-foreground/60">
           AFM Eval v3.2.0
         </p>
       </div>
