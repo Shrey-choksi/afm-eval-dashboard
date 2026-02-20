@@ -24,28 +24,28 @@ import { useFilterStore } from "@/lib/store";
 import { motion } from "framer-motion";
 
 const DOMAIN_FILTER_MAP: Record<string, string> = {
-  general: "General Knowledge",
-  coding: "Coding & Engineering",
-  finance: "Finance & Analytics",
-  medical: "Medical & Health",
+  general: "General",
+  coding: "Coding",
+  finance: "Finance",
+  medical: "Medical",
   education: "Education",
-  infrastructure: "Infrastructure & DevOps",
-  legal: "Legal & Compliance",
+  infrastructure: "Tech Infrastructure",
+  legal: "Law",
 };
 
 function getPerformanceColor(value: number): string {
-  if (value >= 80) return "#22c55e";
-  if (value >= 70) return "#8b5cf6";
-  if (value >= 60) return "#eab308";
+  if (value >= 50) return "#22c55e";
+  if (value >= 40) return "#8b5cf6";
+  if (value >= 33) return "#eab308";
   return "#ef4444";
 }
 
 function getHeatmapColor(value: number): string {
-  if (value >= 85) return "rgba(34, 197, 94, 0.8)";
-  if (value >= 78) return "rgba(34, 197, 94, 0.5)";
-  if (value >= 72) return "rgba(139, 92, 246, 0.5)";
-  if (value >= 65) return "rgba(234, 179, 8, 0.5)";
-  if (value >= 58) return "rgba(234, 179, 8, 0.3)";
+  if (value >= 50) return "rgba(34, 197, 94, 0.8)";
+  if (value >= 42) return "rgba(34, 197, 94, 0.5)";
+  if (value >= 37) return "rgba(139, 92, 246, 0.5)";
+  if (value >= 33) return "rgba(234, 179, 8, 0.5)";
+  if (value >= 28) return "rgba(234, 179, 8, 0.3)";
   return "rgba(239, 68, 68, 0.4)";
 }
 
@@ -160,7 +160,7 @@ export function DomainBreakdown() {
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <ChartAnnotation text="Education is the strongest domain at 82%+ win rate. Legal & Compliance lags behind at ~58%, suggesting need for domain-specific training data augmentation." />
+              <ChartAnnotation text="Law is the strongest domain at 60% win rate — the only domain where AFM outperforms competitors. Tech Infrastructure lags at 27%, followed by Finance at 34.3%. The largest domain, General (676 samples), sits at 35.9%." />
             </CardContent>
           </Card>
         </motion.div>
@@ -240,7 +240,7 @@ export function DomainBreakdown() {
                   <span className="text-[10px] text-muted-foreground">Strong</span>
                 </div>
               </div>
-              <ChartAnnotation text="All domains show positive trends. Education and General Knowledge lead consistently, while Legal shows the fastest rate of improvement — a +14pp gain since January." />
+              <ChartAnnotation text="All domains show positive trends over the evaluation period. Law and Education lead consistently. Tech Infrastructure and Finance represent the highest-priority domains for data augmentation, with win rates 8–12pp below the portfolio average." />
             </CardContent>
           </Card>
         </motion.div>

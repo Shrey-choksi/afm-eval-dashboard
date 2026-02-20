@@ -24,11 +24,11 @@ const insights = [
     iconColor: "text-emerald-400",
     bgColor: "bg-emerald-500/10",
     borderColor: "border-emerald-500/20",
-    title: "Biggest Improvement Area",
-    metric: "+18pp Win Rate",
+    title: "Strongest Competitive Edge",
+    metric: "60% Win Rate",
     description:
-      "Reasoning Quality showed the largest improvement this quarter, jumping from 62% to 80% accuracy. This correlates directly with the chain-of-thought training data introduced in Cycle 3.",
-    tags: ["Reasoning", "CoT Training", "Q3 Impact"],
+      "Law domain is the only vertical where AFM outperforms competitors, achieving a 60% win rate with a +20pp gap. This demonstrates strong capability in structured, rule-based reasoning tasks.",
+    tags: ["Law Domain", "60% Win Rate", "+20pp Gap"],
   },
   {
     type: "weakness",
@@ -37,10 +37,10 @@ const insights = [
     bgColor: "bg-amber-500/10",
     borderColor: "border-amber-500/20",
     title: "Largest Weakness",
-    metric: "58% Win Rate",
+    metric: "27% Win Rate",
     description:
-      "Legal & Compliance domain remains the weakest vertical at 58% win rate. The model struggles with jurisdiction-specific reasoning and regulatory citation accuracy. Recommend targeted legal corpus augmentation.",
-    tags: ["Legal Domain", "Data Gap", "Priority"],
+      "Tech Infrastructure at 27% and Arabic at 17.2% represent the widest performance gaps. Reasoning Quality (60.4% vs 76.6%) and Factual Accuracy (63.4% vs 74.2%) are the rubric dimensions with the most room to improve.",
+    tags: ["Tech Infra", "Arabic 17.2%", "Reasoning Gap"],
   },
   {
     type: "focus",
@@ -51,8 +51,8 @@ const insights = [
     title: "Recommended Training Focus",
     metric: "3 Priority Areas",
     description:
-      "For the next training cycle, prioritize: (1) Legal domain data augmentation, (2) Arabic and Japanese multilingual capability, (3) Complex multi-step reasoning chains. Expected impact: +8-12pp overall win rate.",
-    tags: ["Next Cycle", "Multilingual", "Reasoning"],
+      "For the next cycle: (1) Reasoning enhancement — target 70%+ from current 60.4%. (2) Factual accuracy improvement via domain-specific training, prioritizing General (56% of queries). (3) Multilingual expansion for Arabic, Turkish, and Japanese. Target: 50%+ overall win rate within 6 months.",
+    tags: ["Reasoning → 70%", "Factual Accuracy", "Multilingual"],
   },
 ];
 
@@ -60,22 +60,22 @@ const quickStats = [
   {
     icon: Shield,
     label: "Safety Score",
-    value: "93%",
-    trend: "+3pp",
+    value: "83.8%",
+    trend: "+0.7pp vs SOTA",
     color: "text-emerald-400",
   },
   {
     icon: Zap,
-    label: "Inference Latency",
-    value: "124ms",
-    trend: "-18ms",
+    label: "Total Evaluations",
+    value: "1,210",
+    trend: "142 subsets",
     color: "text-blue-400",
   },
   {
     icon: BookOpen,
-    label: "Training Data",
-    value: "2.4M",
-    trend: "+340K",
+    label: "Languages",
+    value: "36+",
+    trend: "7 domains",
     color: "text-violet-400",
   },
 ];
@@ -102,8 +102,8 @@ export function AIInsights() {
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-violet-400" />
               <span className="text-sm font-medium">Model Health Score</span>
-              <Badge className="bg-emerald-500/15 text-emerald-500 text-xs font-bold">
-                87 / 100
+              <Badge className="bg-amber-500/15 text-amber-500 text-xs font-bold">
+                35.9% Win Rate
               </Badge>
             </div>
             <div className="flex flex-wrap gap-6">

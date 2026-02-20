@@ -22,11 +22,16 @@ import { motion } from "framer-motion";
 
 const LANG_FILTER_MAP: Record<string, string> = {
   english: "English",
-  chinese: "Chinese (Mandarin)",
+  hindi: "Hindi",
+  portuguese: "Portuguese",
+  korean: "Korean",
+  chinese: "Chinese",
+  polish: "Polish",
+  russian: "Russian",
   spanish: "Spanish",
-  arabic: "Arabic",
-  french: "French",
   japanese: "Japanese",
+  turkish: "Turkish",
+  arabic: "Arabic",
 };
 
 function BubbleTooltip({ active, payload }: {active?: boolean; payload?: Array<{payload: LanguageData}>}) {
@@ -127,7 +132,7 @@ export function MultilingualInsights() {
                       className="text-muted-foreground/50"
                       tickLine={false}
                       axisLine={false}
-                      domain={[0.2, 1]}
+                      domain={[0.2, 1.0]}
                       label={{ value: "Language Complexity", position: "bottom", fontSize: 10, fill: "currentColor", className: "text-muted-foreground" }}
                     />
                     <YAxis
@@ -139,7 +144,7 @@ export function MultilingualInsights() {
                       className="text-muted-foreground/50"
                       tickLine={false}
                       axisLine={false}
-                      domain={[55, 90]}
+                      domain={[10, 55]}
                       tickFormatter={(v) => `${v}%`}
                       label={{ value: "Win Rate %", angle: -90, position: "insideLeft", fontSize: 10, fill: "currentColor", className: "text-muted-foreground" }}
                     />
@@ -161,7 +166,7 @@ export function MultilingualInsights() {
                   </ScatterChart>
                 </ResponsiveContainer>
               </div>
-              <ChartAnnotation text="Clear inverse correlation between language complexity and win rate. English leads at 82%, while high-complexity languages (Arabic, Japanese) cluster around 62-66%. Bubble size shows evaluation volume — high-resource languages benefit from more training data." />
+              <ChartAnnotation text="Clear inverse correlation between language complexity and win rate. English leads at 43.4%, while high-complexity languages (Arabic 17.2%, Turkish 18.2%, Japanese 18.5%) show severe underperformance. The gap widens significantly outside high-resource languages." />
             </CardContent>
           </Card>
         </motion.div>
@@ -252,7 +257,7 @@ export function MultilingualInsights() {
                 </table>
               </div>
               <div className="px-4 py-3">
-                <ChartAnnotation text="English and Portuguese lead in rubric quality. Turkish and Arabic represent the highest-opportunity languages for targeted multilingual training." />
+                <ChartAnnotation text="English (702 samples) is the most reliable benchmark at 43.4%. Hindi leads at 50% but has only 4 samples — insufficient for confidence. Arabic, Turkish, and Japanese represent the highest-opportunity languages for targeted multilingual training." />
               </div>
             </CardContent>
           </Card>
@@ -263,8 +268,8 @@ export function MultilingualInsights() {
 }
 
 function getPerformanceColor(value: number): string {
-  if (value >= 80) return "#22c55e";
-  if (value >= 70) return "#8b5cf6";
-  if (value >= 60) return "#eab308";
+  if (value >= 40) return "#22c55e";
+  if (value >= 30) return "#8b5cf6";
+  if (value >= 25) return "#eab308";
   return "#ef4444";
 }

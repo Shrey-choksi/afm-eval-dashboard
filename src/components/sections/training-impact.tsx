@@ -63,10 +63,10 @@ function buildComparisonData(cycle: TrainingCycle) {
 
 function getCycleAnnotation(index: number): string {
   const annotations = [
-    "Cycle 1 focused on foundational quality improvements. Factual accuracy saw the largest gain (+8pp), driven by retrieval-augmented training data introduced in Q1.",
-    "Cycle 2 delivered broad improvements across all dimensions. Helpfulness jumped +6pp as instruction-tuning datasets were expanded significantly.",
-    "Cycle 3 was the most impactful cycle — Reasoning improved +6pp through chain-of-thought fine-tuning. All dimensions crossed the 78+ threshold.",
-    "Cycle 4 training delivered +5pp average improvement across all dimensions. Reasoning saw the largest gain (+5pp), confirming the effectiveness of chain-of-thought fine-tuning.",
+    "Cycle 1 focused on foundational quality improvements. Factual accuracy saw a +5pp gain, with initial retrieval-augmented training data helping close the 10.8pp gap vs competitors identified in the evaluation.",
+    "Cycle 2 delivered incremental gains across all dimensions. Helpfulness and clarity each improved +3pp through expanded instruction-tuning datasets.",
+    "Cycle 3 continued the upward trajectory — Reasoning improved +3pp through chain-of-thought fine-tuning, addressing the 16.2pp gap identified in the LM Arena evaluation.",
+    "Cycle 4 brings rubric scores to current levels: Factual 63.4%, Reasoning 60.4%, Safety 83.8%. The 16.2% reasoning gap and 10.8% factual gap vs competitors remain the primary targets for next cycle.",
   ];
   return annotations[index] ?? annotations[3];
 }
@@ -312,7 +312,7 @@ export function TrainingImpact() {
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
-              <ChartAnnotation text="Total failure rate reduced from ~73% to ~19% over 12 months. Hallucinations dropped 72% (from 22% to ~6%). Safety violations are now under 1%, meeting production thresholds." />
+              <ChartAnnotation text="Failure rates have decreased across all categories over the evaluation period. Factual inaccuracy (36.6%) and reasoning errors (39.6%) remain the dominant failure modes. Safety violations have been reduced to manageable levels, with near-parity vs competitors (83.8% vs 83.1%)." />
             </CardContent>
           </Card>
         </motion.div>

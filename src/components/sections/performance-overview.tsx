@@ -132,17 +132,17 @@ function KPICard({
 }
 
 const MODEL_COLORS: Record<string, string> = {
-  "AFM v3 (Ours)": "#8b5cf6",
-  "GPT-4o": "#3b82f6",
-  "Claude 3.5": "#06b6d4",
-  "AFM v2 (Legacy)": "#6b7280",
+  "AFM (Ours)": "#8b5cf6",
+  "GPT-5": "#3b82f6",
+  "Claude Opus 4": "#06b6d4",
+  "O3/O4": "#f97316",
 };
 
 const MODEL_FILTER_MAP: Record<string, string> = {
-  "afm-v3": "AFM v3 (Ours)",
-  "afm-v2": "AFM v2 (Legacy)",
-  "gpt-4o": "GPT-4o",
-  "claude-3.5": "Claude 3.5",
+  "afm": "AFM (Ours)",
+  "gpt-5": "GPT-5",
+  "claude-opus-4": "Claude Opus 4",
+  "o3-o4": "O3/O4",
 };
 
 function CustomTooltip({ active, payload, label }: {active?: boolean; payload?: Array<{value: number; name: string; color: string}>; label?: string}) {
@@ -175,9 +175,8 @@ export function PerformanceOverview() {
     if (selectedModelVersion === "all") return allNames;
     const target = MODEL_FILTER_MAP[selectedModelVersion];
     if (!target) return allNames;
-    // Always show the selected model + keep AFM v3 for reference
     return allNames.filter(
-      (n) => n === target || n === "AFM v3 (Ours)"
+      (n) => n === target || n === "AFM (Ours)"
     );
   }, [modelPerf, selectedModelVersion]);
 
@@ -302,7 +301,7 @@ export function PerformanceOverview() {
                     className="text-muted-foreground/50"
                     tickLine={false}
                     axisLine={false}
-                    domain={[40, 90]}
+                    domain={[15, 80]}
                     tickFormatter={(v) => `${v}%`}
                   />
                   <Tooltip content={<CustomTooltip />} />
@@ -316,7 +315,7 @@ export function PerformanceOverview() {
                       dot={false}
                       activeDot={{ r: 4, strokeWidth: 2 }}
                       strokeDasharray={
-                        name.includes("Legacy") ? "5 5" : undefined
+                        name.includes("O3/O4") ? "5 5" : undefined
                       }
                       animationDuration={1500}
                     />
@@ -324,7 +323,7 @@ export function PerformanceOverview() {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <ChartAnnotation text="AFM v3 shows a strong upward trajectory, narrowing the gap with GPT-4o and Claude 3.5 by 18pp since January. The steepest improvement occurred between Q2 and Q3, correlating with training cycle 3." />
+            <ChartAnnotation text="AFM shows a 35.9% overall win rate against four top model families. Best performance against Claude Opus 4 (39.5%) and GPT-5 (37.8%), with the widest gap against O3/O4 (27.8%). While currently trailing SOTA, the upward trajectory shows consistent improvement across evaluation cycles." />
           </CardContent>
         </Card>
       </motion.div>

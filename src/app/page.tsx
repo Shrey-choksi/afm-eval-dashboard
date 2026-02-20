@@ -32,7 +32,7 @@ export default function DashboardPage() {
                 Model Evaluation Dashboard
               </h1>
               <p className="text-[11px] text-muted-foreground">
-                AFM v3 — Evaluation Period: Jan 2025 – Dec 2025
+                AFM — LM Arena Human Evaluation · 1,210 Samples · 36+ Languages · 7 Domains
               </p>
             </div>
             <FiltersPanel />
@@ -56,8 +56,8 @@ export default function DashboardPage() {
           {/* Footer */}
           <footer className="border-t border-border/30 pt-6 pb-8 text-center">
             <p className="text-xs text-muted-foreground/60">
-              AFM Eval Dashboard v3.2.0 — Built for research teams and
-              model evaluation workflows
+              AFM Eval Dashboard — LM Arena Human Evaluation Report ·
+              Built for research teams and model evaluation workflows
             </p>
           </footer>
         </div>

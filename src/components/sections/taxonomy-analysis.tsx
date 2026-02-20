@@ -54,10 +54,10 @@ export function TaxonomyAnalysis() {
   const radarData = useMemo(() => {
     const latestCycle = CYCLES[CYCLES.length - 1];
     const ourModel = modelPerf.find(
-      (m) => m.cycle === latestCycle && m.model_name.includes("AFM v3")
+      (m) => m.cycle === latestCycle && m.model_name.includes("AFM")
     );
     const sotaModel = modelPerf.find(
-      (m) => m.cycle === latestCycle && m.model_name.includes("GPT-4o")
+      (m) => m.cycle === latestCycle && m.model_name.includes("O3/O4")
     );
 
     const dimensions = [
@@ -77,8 +77,8 @@ export function TaxonomyAnalysis() {
 
     return dimensions.map((dim) => ({
       dimension: labels[dim],
-      "AFM v3": ourModel?.rubric_scores[dim] ?? 0,
-      "GPT-4o (SOTA)": sotaModel?.rubric_scores[dim] ?? 0,
+      "AFM (Ours)": ourModel?.rubric_scores[dim] ?? 0,
+      "O3/O4 (SOTA)": sotaModel?.rubric_scores[dim] ?? 0,
     }));
   }, [modelPerf]);
 
@@ -125,18 +125,18 @@ export function TaxonomyAnalysis() {
                       className="text-muted-foreground/40"
                     />
                     <Radar
-                      name="GPT-4o (SOTA)"
-                      dataKey="GPT-4o (SOTA)"
-                      stroke="#3b82f6"
-                      fill="#3b82f6"
+                      name="O3/O4 (SOTA)"
+                      dataKey="O3/O4 (SOTA)"
+                      stroke="#f97316"
+                      fill="#f97316"
                       fillOpacity={0.12}
                       strokeWidth={2}
                       strokeDasharray="5 5"
                       animationDuration={1200}
                     />
                     <Radar
-                      name="AFM v3"
-                      dataKey="AFM v3"
+                      name="AFM (Ours)"
+                      dataKey="AFM (Ours)"
                       stroke="#8b5cf6"
                       fill="#8b5cf6"
                       fillOpacity={0.2}
@@ -149,7 +149,7 @@ export function TaxonomyAnalysis() {
                   </RadarChart>
                 </ResponsiveContainer>
               </div>
-              <ChartAnnotation text="AFM v3 trails GPT-4o (SOTA) by 10-18pp across all rubric dimensions. Factual Accuracy and Reasoning show the widest gaps — highest-impact areas for the next training cycle. Safety Compliance is closest to parity." />
+              <ChartAnnotation text="AFM trails SOTA by 10-18pp across rubric dimensions. The widest gaps are in Reasoning Quality (60.4% vs 76.6%) and Factual Accuracy (63.4% vs 74.2%). Safety/Policy Adherence is closest to parity at 83.8% vs 83.1% — indicating robust safety measures already in place." />
             </CardContent>
           </Card>
         </motion.div>
@@ -163,7 +163,7 @@ export function TaxonomyAnalysis() {
           <Card className="border-border/50 bg-card/50 backdrop-blur-sm h-full">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium">
-                Rubric Severity Distribution
+                Rubric Pass / Fail Distribution
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -202,23 +202,16 @@ export function TaxonomyAnalysis() {
                     <Tooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: "11px" }} />
                     <Bar
-                      dataKey="no_issues"
-                      name="No Issues"
+                      dataKey="pass"
+                      name="Pass (Yes)"
                       stackId="a"
                       fill="#22c55e"
                       radius={[0, 0, 0, 0]}
                       animationDuration={1200}
                     />
                     <Bar
-                      dataKey="minor_issues"
-                      name="Minor Issues"
-                      stackId="a"
-                      fill="#eab308"
-                      animationDuration={1200}
-                    />
-                    <Bar
-                      dataKey="major_issues"
-                      name="Major Issues"
+                      dataKey="fail"
+                      name="Fail (No)"
                       stackId="a"
                       fill="#ef4444"
                       radius={[0, 4, 4, 0]}
@@ -227,7 +220,7 @@ export function TaxonomyAnalysis() {
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <ChartAnnotation text="Safety Compliance has the highest 'No Issues' rate at 88%. Reasoning Quality has the most Major Issues (12%), confirming it as the top priority for targeted fine-tuning." />
+              <ChartAnnotation text="Safety Compliance has the highest pass rate at 83.8%. Reasoning Quality carries the most failures (39.6% fail rate), confirming it as the top priority for targeted training — target: reach 70%+ in the next iteration." />
             </CardContent>
           </Card>
         </motion.div>

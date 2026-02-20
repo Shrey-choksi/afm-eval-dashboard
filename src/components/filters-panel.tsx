@@ -35,11 +35,11 @@ export function FiltersPanel() {
           <SelectItem value="all">All Domains</SelectItem>
           <SelectItem value="general">General</SelectItem>
           <SelectItem value="coding">Coding</SelectItem>
-          <SelectItem value="finance">Finance</SelectItem>
-          <SelectItem value="medical">Medical</SelectItem>
           <SelectItem value="education">Education</SelectItem>
-          <SelectItem value="infrastructure">Infrastructure</SelectItem>
-          <SelectItem value="legal">Legal</SelectItem>
+          <SelectItem value="medical">Medical</SelectItem>
+          <SelectItem value="finance">Finance</SelectItem>
+          <SelectItem value="infrastructure">Tech Infrastructure</SelectItem>
+          <SelectItem value="legal">Law</SelectItem>
         </SelectContent>
       </Select>
 
@@ -50,24 +50,29 @@ export function FiltersPanel() {
         <SelectContent>
           <SelectItem value="all">All Languages</SelectItem>
           <SelectItem value="english">English</SelectItem>
+          <SelectItem value="hindi">Hindi</SelectItem>
+          <SelectItem value="portuguese">Portuguese</SelectItem>
+          <SelectItem value="korean">Korean</SelectItem>
           <SelectItem value="chinese">Chinese</SelectItem>
+          <SelectItem value="polish">Polish</SelectItem>
+          <SelectItem value="russian">Russian</SelectItem>
           <SelectItem value="spanish">Spanish</SelectItem>
-          <SelectItem value="arabic">Arabic</SelectItem>
-          <SelectItem value="french">French</SelectItem>
           <SelectItem value="japanese">Japanese</SelectItem>
+          <SelectItem value="turkish">Turkish</SelectItem>
+          <SelectItem value="arabic">Arabic</SelectItem>
         </SelectContent>
       </Select>
 
       <Select value={selectedModelVersion} onValueChange={setModelVersion}>
         <SelectTrigger className="h-8 w-[160px] text-xs bg-card/50 border-border/50">
-          <SelectValue placeholder="Model Version" />
+          <SelectValue placeholder="Model" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All Versions</SelectItem>
-          <SelectItem value="afm-v3">AFM v3</SelectItem>
-          <SelectItem value="afm-v2">AFM v2</SelectItem>
-          <SelectItem value="gpt-4o">GPT-4o</SelectItem>
-          <SelectItem value="claude-3.5">Claude 3.5</SelectItem>
+          <SelectItem value="all">All Models</SelectItem>
+          <SelectItem value="afm">AFM (Ours)</SelectItem>
+          <SelectItem value="gpt-5">GPT-5</SelectItem>
+          <SelectItem value="claude-opus-4">Claude Opus 4</SelectItem>
+          <SelectItem value="o3-o4">O3/O4</SelectItem>
         </SelectContent>
       </Select>
     </div>
